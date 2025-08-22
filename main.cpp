@@ -2,6 +2,14 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
+
+void processInput(GLFWwindow *window)
+{
+    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+}
+
+
 int main() {
     // 初始化 GLFW
     if (!glfwInit()) {
@@ -15,7 +23,7 @@ int main() {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // 创建窗口
-    GLFWwindow* window = glfwCreateWindow(800, 600, "GLFW + GLAD Test", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(800, 800, "Jeck leanrn opengl", nullptr, nullptr);
     if (!window) {
         std::cerr << "Failed to create GLFW window\n";
         glfwTerminate();
@@ -31,16 +39,21 @@ int main() {
         return -1;
     }
 
-
+    glViewport(0, 0, 400, 400);
 
     // 打印 OpenGL 版本，验证 GLAD 是否成功加载
     std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
 
     // 主循环
     while (!glfwWindowShouldClose(window)) {
+
+        processInput(window);
         // 设置背景色
+        glEnable(GL_SCISSOR_TEST);
+        glScissor(0, 0, 400, 400);
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+        glDisable(GL_SCISSOR_TEST);
 
         // 交换缓冲区 & 处理事件
         glfwSwapBuffers(window);
@@ -50,3 +63,5 @@ int main() {
     glfwTerminate();
     return 0;
 }
+
+
