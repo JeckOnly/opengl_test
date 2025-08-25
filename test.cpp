@@ -13,12 +13,12 @@ void modifyWithPointer(std::string* strPtr) {
     // strPtr = nullptr; // 可以这样做，但之后就不能再用*strPtr了，危险！
 }
 
-int main() {
-    std::string myString = "Old";
-    std::cout << "Before: " << myString << std::endl; // Output: Old
-
-    modifyWithPointer(&myString); // 显式传递 myString 的地址 (& -> 取地址)
-
-    std::cout << "After: " << myString << std::endl; // Output: New (Pointer)
-    return 0;
-}
+// int main() {
+//     std::string myString = "Old";
+//     std::cout << "Before: " << myString << std::endl; // Output: Old
+//
+//     modifyWithPointer(&myString); // 显式传递 myString 的地址 (& -> 取地址)
+//
+//     std::cout << "After: " << myString << std::endl; // Output: New (Pointer)
+//     return 0;
+// }
